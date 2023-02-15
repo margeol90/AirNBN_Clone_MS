@@ -1,2 +1,41 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<%# creating main container %>
+<div class="container mt-3">
+  <%# dividing in rows %>
+  <div class="row">
+    <%# distribution col-12 %>
+    <div class="col-12">
+      <h1>Pages#home</h1>
+    </div>
+  </div>
+  <div class="row">
+    <% @flats.each do |flat| %>
+      <%# dist md-4 %>
+      <div class="col-md-4">
+        <%# creating flat-card %>
+        <div class="flat-card">
+          <%# creating image, for future cloudinary updating %>
+          <div class="flat-card-image">(Insert beautiful image here)</div>
+          <%# creating card-content like previous examples %>
+          <div class="flat-card-content">
+            <%# card-title only name, discuss to stablish an address %>
+            <div class="flat-card-title">
+              <h4><%= flat.name %></h4>
+            </div>
+            <%# distribution flex %>
+            <div class="d-flex">
+              <%# distribution of room guests and price %>
+              <div class="d-flex align-items-center">
+                <i class="fa-solid fa-bed"></i>
+                <span><%= flat.rooms %></span>
+              </div>
+              <div class="flex align-items-center ms-3">
+                <i class="fa-solid fa-euro-sign"></i>
+                <span><%= flat.price %></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
