@@ -1,2 +1,7 @@
 <h1>Pages#home</h1>
+<%= @flats.each do |flat| %>
+  <p><% flat.name %></p>
+  <p><% flat.rooms %></p>
+  <p><% flat.price %></p>
+<% end %>
 <p>Find me in app/views/pages/home.html.erb</p>
