@@ -24,13 +24,16 @@
             <%# distribution flex %>
             <div class="d-flex">
               <%# distribution of room guests and price %>
-              <div class="d-flex align-items-center">
+              <div class="flex align-items-center">
                 <i class="fa-solid fa-bed"></i>
                 <span><%= flat.rooms %></span>
               </div>
               <div class="flex align-items-center ms-3">
                 <i class="fa-solid fa-euro-sign"></i>
                 <span><%= flat.price %></span>
+              </div>
+              <div class="flex align-items-center ms-4">
+                <%= link_to "View this flat", flat_path(flat), class: "btn btn-success" %>
               </div>
             </div>
           </div>
