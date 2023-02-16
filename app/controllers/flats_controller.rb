@@ -12,6 +12,16 @@ class FlatsController < ApplicationController
       render :new
     end
   end
+  
+  def edit
+    @flat = Flat.find(params[:id])
+  end
+
+  def update
+    @flat = Flat.find(params[:id])
+    @flat.update(flat_params)
+    redirect_to root_path
+    # waiting for show page to redirect
 
   def destroy
     @flat = Flat.find(params[:id])
