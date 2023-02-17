@@ -1,3 +1,7 @@
 <div class="container">
-  <h1>New review</h1>
+  <h1>Enter new review</h1>
+  <%= simple_form_for [@flat, @review] do |f| %>
+    <%= f.input :content %>
+    <%= f.submit "Submit review", class: "btn btn-primary" %>
+  <% end %>
 </div>
