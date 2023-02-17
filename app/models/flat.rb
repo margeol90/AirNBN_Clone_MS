@@ -1,5 +1,6 @@
 class Flat < ApplicationRecord
   belongs_to :user
 
-  validates :name, :rooms, :price, presence: true, uniqueness: true
+  validates :name, uniqueness: true
+  validates :rooms, :price, presence: true
 end
