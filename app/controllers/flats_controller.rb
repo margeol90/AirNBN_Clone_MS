@@ -12,7 +12,7 @@ class FlatsController < ApplicationController
       render :new
     end
   end
-  
+
   def edit
     @flat = Flat.find(params[:id])
   end

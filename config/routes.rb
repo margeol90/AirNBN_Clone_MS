@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Adding an 'about' controller method
   resources :flats do
-    resources :reviews, only: [:new]
+    resources :reviews, only: [:new, :create]
   end
   # Defines the root path route ("/")
   # root "articles#index"

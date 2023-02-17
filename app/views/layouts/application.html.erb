@@ -14,9 +14,10 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
+    <hr>
     <div class="container">
       <% if user_signed_in? %>
-      <h4>Hi <%= current_user.email %></h4>
+      <p>Hi <%= "#{current_user.email}!" %></p>
     <% end %>
     </div>
   </body>
