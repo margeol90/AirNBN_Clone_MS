@@ -41,4 +41,8 @@
       </div>
     <% end %>
   </div>
+  <%# pundit stuff %>
+  <% if policy(Flat).new? %>
+    <%= link_to "New flat", new_flat_path %>
+  <% end %>
 </div>

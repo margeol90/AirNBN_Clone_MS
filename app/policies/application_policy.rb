@@ -3,10 +3,14 @@
 class ApplicationPolicy
   attr_reader :user, :record
 
+  # ! user => current_user; record => individual flat, Bookings and reviews?????
+
   def initialize(user, record)
     @user = user
     @record = record
   end
+
+  # ! true => anyone can do this, false => no one can do this
 
   def index?
     false
