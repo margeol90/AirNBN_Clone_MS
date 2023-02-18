@@ -8,10 +8,11 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
-    @booking.flat = @flat
+    @booking.user = current_user
     # do I need to assign the flat to the booking?
     if @booking.save!
       # we can redirect to the profile page or somewhere else later
+    raise
       redirect_to root_path
     else
       render :new
@@ -21,7 +22,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(@booking).permit(:start_date, :end_date, :user_id)
+    params.require(@booking).permit(:start_date, :end_date, :flat_id)
   end
 
   def set_booking

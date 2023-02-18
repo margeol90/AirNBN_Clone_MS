@@ -25,6 +25,7 @@ class FlatsController < ApplicationController
   end
 
   def show
+    @booking = Booking.new(flat: @flat)
   end
 
   def edit
