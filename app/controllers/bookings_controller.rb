@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
-  before_action :set_booking
-  before_action :set_flat
+  # before_action :set_booking, only: [:new, :create]
+  before_action :set_flat, only: [:new, :create]
 
   def new
     @booking = Booking.new
@@ -9,20 +9,18 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.user = current_user
-    # do I need to assign the flat to the booking?
     if @booking.save!
       # we can redirect to the profile page or somewhere else later
-    raise
       redirect_to root_path
     else
-      render :new
+      render :new, notice: "Your booking was not processed. Try again"
     end
   end
 
   private
 
   def booking_params
-    params.require(@booking).permit(:start_date, :end_date, :flat_id)
+    params.require(@booking).permit(:start_date, :end_date)
   end
 
   def set_booking
@@ -30,6 +28,6 @@ class BookingsController < ApplicationController
   end
 
   def set_flat
-    @flat = Flat.find(params[:id])
+    @flat = Flat.find(params[:flat_id])
   end
 end

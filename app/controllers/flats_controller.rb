@@ -25,7 +25,7 @@ class FlatsController < ApplicationController
   end
 
   def show
-    @booking = Booking.new(flat: @flat)
+    @booking = Booking.new
   end
 
   def edit
@@ -35,7 +35,7 @@ class FlatsController < ApplicationController
     if @flat.update(flat_params)
       redirect_to flat_path(@flat), notice: "Your flat has been succesfully updated"
     else
-      render :update
+      render :edit
     end
   end
 
