@@ -1,13 +1,22 @@
 class FlatsController < ApplicationController
-  before_action :set_flat, only: [:show, :edit, :update, :destroy]
+  before_action :set_flat, only: %i[show edit update destroy]
+  skip_before_action :authenticate_user!, only: :index
+
+  def index
+    @flats = policy_scope(Flat).all # adding bundit stuff, "policy_scope()"
+  end
 
   def new
     @flat = Flat.new
+    authorize @flat # pundit stuff
   end
 
   def create
     @flat = Flat.new(flat_params)
     @flat.user = current_user
+
+    authorize @flat # pundit stuff
+
     if @flat.save!
       redirect_to flat_path(@flat)
     else
@@ -23,22 +32,28 @@ class FlatsController < ApplicationController
 
   def update
     @flat.update(flat_params)
+
     redirect_to root_path
-    # waiting for show page to redirect
+    # waiting for show page to fix redirect, and maybe write a conditional estatement
   end
 
   def destroy
     @flat.destroy
+
     redirect_to flats_path, status: :see_other
   end
 
+  # def users_flats
+  # @flats = Flat.where(params[:current_user])
+  # end
+
   private
+
+  def set_flat
+    @flat = Flat.find(params[:id])
+    authorize @flat # pundit stuff
+  end
 
   def flat_params
     params.require(:flat).permit(:name, :rooms, :price)
   end
-
-  def set_flat
-    @flat = Flat.find(params[:id])
-  end
-end
