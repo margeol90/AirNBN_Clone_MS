@@ -12,7 +12,9 @@
       <% if policy(@flat).edit? %>
         <%= link_to "Edit", edit_flat_path, class: "btn btn-warning" %>
       <% end %>
-      <%= button_to "Delete your flat", @flat, class: "btn btn-danger my-2", method: :delete if policy(@flat).destroy? %>
+      <% if policy(@flat).destroy? %>
+        <%= link_to "Delete your flat", flat_path(@flat), class: "btn btn-danger my-2", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+      <% end %>
     </div>
     <div class="container">
       <h1 class="text-center mt-4">Book this property</h1>
