@@ -1,6 +1,6 @@
 class FlatsController < ApplicationController
   before_action :set_flat, only: %i[show edit update destroy]
-  skip_before_action :authenticate_user!, only: :index
+  skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
     @flats = policy_scope(Flat).all # adding bundit stuff, "policy_scope()"
@@ -35,11 +35,13 @@ class FlatsController < ApplicationController
     if @flat.update(flat_params)
       redirect_to flat_path(@flat), notice: "Your flat has been succesfully updated"
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
+    authorize @flat # pundit stuff
+
     @flat.destroy
 
     redirect_to flats_path, status: :see_other
