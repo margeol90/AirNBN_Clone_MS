@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # Adding an 'about' controller method
   resources :flats do
     resources :reviews, only: %i[new create]
-    resources :bookings, only: %i[new create edit update]
+    resources :bookings, only: %i[create edit update]
   end
   resources :bookings, only: [:destroy]
   resources :reviews, only: [:destroy]
