@@ -12,16 +12,13 @@
       <% if policy(@flat).edit? %>
         <%= link_to "Edit", edit_flat_path, class: "btn btn-warning" %>
       <% end %>
-      <% if policy(@flat).destroy? %>
-        <%= link_to "Delete", root_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger" %>
-      <% end %>
+      <%= button_to "Delete your flat", @flat, class: "btn btn-danger my-2", method: :delete if policy(@flat).destroy? %>
     </div>
-
     <div class="container">
       <h1 class="text-center mt-4">Book this property</h1>
       <div class="row justify-content-center">
         <div class="col-12 col-md-6 col-lg-4">
-        <%= simple_form_for [@flat, @booking], data: { controller: 'flatpickr' } do |f| %>
+          <%= simple_form_for [@flat, @booking], data: { controller: 'flatpickr' } do |f| %>
             <%= f.input :start_date, as: :string, input_html: { data: { flatpickr_target: "startTime" } } %>
             <%= f.input :end_date, as: :string, input_html: { data: { flatpickr_target: "endTime" } } %>
             <%= f.submit class: "btn btn-primary" %>
@@ -30,7 +27,6 @@
         </div>
       </div>
     </div>
-
     <div class="col-4" >
       <div class="flat-show-card">
         <h5>Reserve your booking!</h5>
