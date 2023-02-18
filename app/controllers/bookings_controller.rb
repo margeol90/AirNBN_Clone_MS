@@ -16,6 +16,16 @@ class BookingsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    @booking.update(booking_params)
+
+    redirect_to root_path
+    # waiting for show page to fix redirect, and maybe write a conditional estatement
+  end
+
   private
 
   def booking_params
