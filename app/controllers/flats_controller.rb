@@ -24,6 +24,9 @@ class FlatsController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def edit
   end
 
@@ -54,4 +57,3 @@ class FlatsController < ApplicationController
   def flat_params
     params.require(:flat).permit(:name, :rooms, :price)
   end
-end
