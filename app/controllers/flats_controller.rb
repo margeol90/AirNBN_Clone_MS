@@ -31,10 +31,11 @@ class FlatsController < ApplicationController
   end
 
   def update
-    @flat.update(flat_params)
-
-    redirect_to root_path
-    # waiting for show page to fix redirect, and maybe write a conditional estatement
+    if @flat.update(flat_params)
+      redirect_to flat_path(@flat), notice: "Your flat has been succesfully updated"
+    else
+      render :update
+    end
   end
 
   def destroy
