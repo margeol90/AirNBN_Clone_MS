@@ -13,10 +13,13 @@ class FlatsController < ApplicationController
     end
   end
 
+<<<<<<< HEAD
   def show
     @flat = Flat.find(params[:id])
   end
 
+=======
+>>>>>>> master
   def edit
     @flat = Flat.find(params[:id])
   end
