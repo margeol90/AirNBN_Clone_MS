@@ -39,11 +39,9 @@ class FlatsController < ApplicationController
   end
 
   def destroy
-    authorize @flat # pundit stuff
-
     @flat.destroy
 
-    redirect_to flats_path, status: :see_other
+    redirect_to flats_path, notice: "Flat was successfully destroyed"
   end
 
   # def users_flats
