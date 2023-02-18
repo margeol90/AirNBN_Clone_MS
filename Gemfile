@@ -64,6 +64,9 @@ group :development, :test do
 
 end
 
+# env file to hide keys
+gem "dotenv-rails", groups: [:development, :test]
+
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
