@@ -32,9 +32,7 @@ class FlatsController < ApplicationController
 
   def update
     @flat.update(flat_params)
-
-    redirect_to root_path
-    # waiting for show page to fix redirect, and maybe write a conditional estatement
+    redirect_to flat_path(@flat)
   end
 
   def destroy
