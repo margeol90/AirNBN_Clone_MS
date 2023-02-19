@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
-  # before_action :set_booking, only: [:new, :create]
-  before_action :set_flat, only: %i[new create edit update]
+  before_action :set_booking, only: [:destroy]
+  before_action :set_flat, only: %i[new create edit update destroy]
 
   def create
     @booking = Booking.new(booking_params)
@@ -9,7 +9,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     if @booking.save!
       # we can redirect to the profile page or somewhere else later
-      redirect_to root_path
+      redirect_to my_bookings_path
     else
       render :new, notice: "Your booking was not processed. Try again"
     end
@@ -21,8 +21,13 @@ class BookingsController < ApplicationController
   def update
     @booking.update(booking_params)
 
-    redirect_to root_path
+    redirect_to my_bookings_path
     # waiting for show page to fix redirect, and maybe write a conditional estatement
+  end
+
+  def destroy
+    @booking.destroy
+    redirect_to my_bookings_path, notice: "Booking reservation was been cancelled"
   end
 
   private
