@@ -1,1 +1,20 @@
-<h1>bananas</h1>
+<h1>My Flats</h1>
+ <% @flats.each do |flat| %>
+    <div class="card-product my-3">
+      <% if flat.photo.attached? %>
+        <%= cl_image_tag flat.photo.key %>
+      <% else %>
+        <img src="https://liftlearning.com/wp-content/uploads/2020/09/default-image.png" />
+      <% end %>
+      <div class="card-product-infos">
+        <h2 class="my-2"><%=flat.name %></h2>
+      </div>
+
+        <%# <%= link_to "Edit", edit_flat_path(@flat), class: "btn btn-warning" %> %>
+
+
+        <%# <%= link_to "Delete your flat", flat_path(@flat), class: "btn btn-danger my-2", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %> %>
+
+    </div>
+  <% end %>
+</div>
