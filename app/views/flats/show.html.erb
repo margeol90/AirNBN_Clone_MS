@@ -16,70 +16,18 @@
         <%= link_to "Delete your flat", flat_path(@flat), class: "btn btn-danger my-2", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
       <% end %>
     </div>
-    <div class="container">
-      <h1 class="text-center mt-4">Book this property</h1>
-      <div class="row justify-content-center">
-        <div class="col-12 col-md-6 col-lg-4">
-          <%= simple_form_for [@flat, @booking], data: { controller: 'flatpickr' } do |f| %>
-            <%= f.input :start_date, as: :string, input_html: { data: { flatpickr_target: "startTime" } } %>
-            <%= f.input :end_date, as: :string, input_html: { data: { flatpickr_target: "endTime" } } %>
-            <%= f.submit class: "btn btn-primary" %>
-          <% end %>
-          <%= link_to "Cancel", flats_path, class: "btn btn-danger my-2" %>
+    <div class="col-4">
+      <div class="card  border-secondary mb-3" style="width: 18rem;">
+        <div class="bg-white rounded p-3">
+          <h5 class="text-center mt-4">Book this property</h5>
+            <%= @flat.price %>€ per night
+              <%= simple_form_for [@flat, @booking], data: { controller: 'flatpickr' } do |f| %>
+                <%= f.input :start_date, as: :string, placeholder: "#{current_day}", input_html: { data: { flatpickr_target: "startTime" } } %>
+                <%= f.input :end_date, as: :string, placeholder: "#{current_day+3}", input_html: { data: { flatpickr_target: "endTime" } } %>
+                <%= f.submit class: "btn btn-primary w-100" %>
+              <% end %>
+              <%= link_to "Cancel", flats_path, class: "btn btn-danger my-2" %>
+            </div>
         </div>
       </div>
     </div>
-    <div class="col-4" >
-      <div class="flat-show-card">
-        <h5>Reserve your booking!</h5>
-        <%= @flat.price %>€ per night
-        <form action="">
-          <div class="input-group">
-            <span class="input-group-text" id="start-date-label">Check-in</span>
-            <input type="date" class="form-control" value="<%= current_day %>">
-          </div>
-          <div class="input-group mt-2">
-            <span class="input-group-text" id="end-date-label">Checkout</span>
-            <input type="date" class="form-control">
-          </div>
-          <div class="row">
-            <div class="col-sm-4">
-              <div class="form-group">
-                <span class="form-label">Rooms</span>
-                <select class="form-control">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                </select>
-                <span class="select-arrow"></span>
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="form-group">
-                <span class="form-label">Adults</span>
-                <select class="form-control">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                </select>
-                <span class="select-arrow"></span>
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="form-group">
-                <span class="form-label">Children</span>
-                <select class="form-control">
-                  <option>0</option>
-                  <option>1</option>
-                  <option>2</option>
-                </select>
-                <span class="select-arrow"></span>
-              </div>
-            </div>
-          </div>
-          <input type="submit" value="Reserve" class="btn btn-danger mt-2" style="width: 100%">
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
