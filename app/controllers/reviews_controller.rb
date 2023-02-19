@@ -4,11 +4,13 @@ class ReviewsController < ApplicationController
   def new
     @flat = Flat.find(params[:flat_id])
     @review = Review.new
+    authorize @review
   end
 
   def create
     @review = Review.new(review_params)
     @review.flat = @flat
+    authorize @review
     if @review.save
       redirect_to flat_path(@flat)
     else
