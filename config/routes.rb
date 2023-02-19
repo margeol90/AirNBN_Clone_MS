@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   resources :reviews, only: [:destroy]
   # Defines the root path route ("/")
   # root "articles#index"
+  get    "pages/my_flats", to: "pages#my_flats", as: :my_flats
+  get    "pages/my_bookings", to: "pages#my_bookings", as: :my_bookings
 end
