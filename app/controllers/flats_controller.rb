@@ -24,14 +24,11 @@ class FlatsController < ApplicationController
     end
   end
 
-<<<<<<< HEAD
-=======
   def show
     @booking = Booking.new
     authorize @booking
   end
 
->>>>>>> master
   def edit
   end
 
