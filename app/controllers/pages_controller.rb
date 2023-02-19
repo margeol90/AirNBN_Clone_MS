@@ -3,4 +3,10 @@ class PagesController < ApplicationController
 
   def home
   end
+
+  def my_flats
+  end
+
+  def my_bookings
+  end
 end
