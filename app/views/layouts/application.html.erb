@@ -13,20 +13,12 @@
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
     <%= yield %>
-<<<<<<< HEAD
-    <hr>
-    <div class="container">
-      <% if user_signed_in? %>
-      <p>Hi <%= "#{current_user.email}!" %></p>
-    <% end %>
-=======
     <br>
     <hr>
     <div class="container">
       <% if user_signed_in? %>
         <p>Hi <%= current_user.email %>!</p>
       <% end %>
->>>>>>> master
     </div>
   </body>
 </html>
