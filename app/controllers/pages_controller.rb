@@ -10,5 +10,6 @@ class PagesController < ApplicationController
 
   def my_bookings
     @bookings = Booking.where(user_id: current_user.id)
+    @review = Review.new
   end
 end

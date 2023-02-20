@@ -34,9 +34,7 @@
     <p>Reviews</p>
     <ul class="list-group">
       <% @bookings.each do |booking| %>
-        <% booking.reviews.each do |review| %>
-          <li class="list-group-item"><%= review.content %></li>
-        <% end %>
+        <li class="list-group-item"><%= booking.review&.content %></li>
       <% end %>
     </ul>
   </div>
