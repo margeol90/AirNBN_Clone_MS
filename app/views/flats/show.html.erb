@@ -31,3 +31,10 @@
         </div>
       </div>
     </div>
+<br>
+<p>Reviews</p>
+<ul class="list-group">
+  <% @flat.reviews.each do |review| %>
+    <li class="list-group-item"><%= review.content %></li>
+  <% end %>
+</ul>
