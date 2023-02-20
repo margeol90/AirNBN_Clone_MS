@@ -1,6 +1,6 @@
 <div class="container">
-  <h1><%= "Review your stay at #{@flat.name}"%></h1>
-  <%= simple_form_for [@flat, @review] do |f| %>
+  <h1><%= "Review your stay at #{@booking.flat.name}"%></h1>
+  <%= simple_form_for [@booking, @review] do |f| %>
     <%= f.input :content %>
     <%= f.submit "Submit review", class: "btn btn-primary" %>
   <% end %>
