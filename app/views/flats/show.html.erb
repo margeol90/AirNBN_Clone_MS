@@ -31,7 +31,11 @@
       </div>
     </div>
     <br>
-    <p>Reviews</p>
+    <h3>Description</h3>
+    <p><%= @flat.description %></p>
+    <h3>Address</h3>
+    <p><%= @flat.address %></p>
+    <h3>Reviews<h3>
     <ul class="list-group">
       <% @bookings.each do |booking| %>
         <li class="list-group-item"><%= booking.review&.content %></li>
