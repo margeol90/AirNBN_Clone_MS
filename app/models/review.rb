@@ -1,5 +1,6 @@
 class Review < ApplicationRecord
-  belongs_to :flat
+  has_one :booking
+  has_one :flat, through: :booking
 
   validates :content, presence: true
 end

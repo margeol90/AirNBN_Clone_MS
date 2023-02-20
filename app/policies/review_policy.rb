@@ -12,5 +12,6 @@ class ReviewPolicy < ApplicationPolicy
 
   def create?
     return true
+    # record.flat.user != user
   end
 end

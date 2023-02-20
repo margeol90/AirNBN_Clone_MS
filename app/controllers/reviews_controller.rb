@@ -8,9 +8,8 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    @review.flat = @flat
-    authorize @review
-    if @review.save
+    @review.booking = @booking
+    if @review.save!
       redirect_to flat_path(@flat)
     else
       render :new, status: :unprocessable_entity

@@ -26,6 +26,7 @@ class FlatsController < ApplicationController
 
   def show
     @booking = Booking.new
+    @bookings = @flat.bookings
     authorize @booking
   end
 

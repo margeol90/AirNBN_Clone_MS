@@ -15,7 +15,6 @@
       <% if policy(@flat).destroy? %>
         <%= link_to "Delete your flat", flat_path(@flat), class: "btn btn-danger my-2", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
       <% end %>
-      <%= link_to "Write a review", new_flat_review_path(@flat), class: "btn btn-success my-2" %>
     </div>
     <div class="col-4">
       <div class="card  border-secondary mb-3" style="width: 18rem;">
@@ -31,11 +30,13 @@
         </div>
       </div>
     </div>
-<br>
-<p>Reviews</p>
-<ul class="list-group">
-  <% @flat.reviews.each do |review| %>
-    <li class="list-group-item"><%= review.content %></li>
-  <% end %>
-</ul>
-</div>
+    <br>
+    <p>Reviews</p>
+    <ul class="list-group">
+      <% @bookings.each do |booking| %>
+        <% booking.reviews.each do |review| %>
+          <li class="list-group-item"><%= review.content %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
