@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:destroy]
-  before_action :set_flat, only: %i[new create edit update destroy]
+  before_action :set_flat, only: %i[new create edit update]
 
   def create
     @booking = Booking.new(booking_params)
@@ -27,7 +27,8 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking.destroy
-    redirect_to my_bookings_path, notice: "Booking reservation was been cancelled"
+    redirect_to my_bookings_path(@booking), status: :see_other
+    # redirect_to my_bookings_path(@booking), notice: "Booking reservation was been cancelled"
   end
 
   private
