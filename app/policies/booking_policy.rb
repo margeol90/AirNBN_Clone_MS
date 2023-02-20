@@ -33,4 +33,8 @@ class BookingPolicy < ApplicationPolicy
     # it returns true if the user owns the flat
     # it returns false if the user does not own the flat
   end
+
+  def destroy?
+    return record.user == user
+  end
 end
