@@ -5,6 +5,7 @@ class PagesController < ApplicationController
   end
 
   def my_flats
+    @flats = Flat.where(user_id: current_user.id)
   end
 
   def my_bookings
