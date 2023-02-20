@@ -15,19 +15,19 @@
       <% if policy(@flat).destroy? %>
         <%= link_to "Delete your flat", flat_path(@flat), class: "btn btn-danger my-2", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
       <% end %>
+      <%= link_to "Write a review", new_flat_review_path(@flat), class: "btn btn-success my-2" %>
     </div>
     <div class="col-4">
       <div class="card  border-secondary mb-3" style="width: 18rem;">
         <div class="bg-white rounded p-3">
           <h5 class="text-center mt-4">Book this property</h5>
-            <%= @flat.price %>€ per night
-              <%= simple_form_for [@flat, @booking], data: { controller: 'flatpickr' } do |f| %>
-                <%= f.input :start_date, as: :string, placeholder: "#{current_day}", input_html: { data: { flatpickr_target: "startTime" } } %>
-                <%= f.input :end_date, as: :string, placeholder: "#{current_day+3}", input_html: { data: { flatpickr_target: "endTime" } } %>
-                <%= f.submit class: "btn btn-primary w-100" %>
-              <% end %>
-              <%= link_to "Cancel", flats_path, class: "btn btn-danger my-2" %>
-            </div>
+          <%= @flat.price %>€ per night
+          <%= simple_form_for [@flat, @booking], data: { controller: 'flatpickr' } do |f| %>
+            <%= f.input :start_date, as: :string, placeholder: "#{current_day}", input_html: { data: { flatpickr_target: "startTime" } } %>
+            <%= f.input :end_date, as: :string, placeholder: "#{current_day+3}", input_html: { data: { flatpickr_target: "endTime" } } %>
+            <%= f.submit class: "btn btn-primary w-100" %>
+          <% end %>
+          <%= link_to "Cancel", flats_path, class: "btn btn-danger my-2" %>
         </div>
       </div>
     </div>
@@ -38,3 +38,4 @@
     <li class="list-group-item"><%= review.content %></li>
   <% end %>
 </ul>
+</div>
