@@ -2,7 +2,6 @@ class ReviewsController < ApplicationController
   before_action :set_flat, only: %i[new create]
 
   def new
-    @flat = Flat.find(params[:flat_id])
     @review = Review.new
     authorize @review
   end
