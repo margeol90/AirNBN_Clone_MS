@@ -17,3 +17,7 @@ flat3 = Flat.create(name: "Villa Serenity, Brand New Luxury Beachfront Villa", r
 flat4 = Flat.create(name: "Alfresco Private Villa w/ Pool & Rice Field View", rooms: 1, price: 180, user_id: user.id)
 puts "Complete"
 flat1.photo.attach(io: File.open(Rails.root.join("app/assets/images/flat1.jpg")), filename:"flat1")
+flat2.photo.attach(io: File.open(Rails.root.join("app/assets/images/flat2.jpg")), filename:"flat2")
+flat3.photo.attach(io: File.open(Rails.root.join("app/assets/images/flat3.jfif")), filename:"flat3")
+flat4.photo.attach(io: File.open(Rails.root.join("app/assets/images/flat4.jfif")), filename:"flat4")
+puts "Added images"
