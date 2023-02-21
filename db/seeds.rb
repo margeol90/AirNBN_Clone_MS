@@ -10,7 +10,8 @@ User.destroy_all
 puts "Creating a user"
 user = User.create!(email: "test@test.com", password: "12345678")
 puts "Creating flats"
-Flat.create(name: "Beachside Villa at Balian Surf Break", rooms: 2, price: 300, user_id: user.id)
+Flat.create(name: "Beachside Villa at Balian Surf Break", address: "16 Villa Gaudelet, Paris", rooms: 2, price: 300,
+            user_id: user.id)
 Flat.create(name: "Nature Valley Private Pool Villas", rooms: 4, price: 450, user_id: user.id)
 Flat.create(name: "Villa Serenity, Brand New Luxury Beachfront Villa", rooms: 4, price: 899, user_id: user.id)
 Flat.create(name: "Alfresco Private Villa w/ Pool & Rice Field View", rooms: 1, price: 180, user_id: user.id)
