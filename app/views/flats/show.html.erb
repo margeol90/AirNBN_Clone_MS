@@ -25,6 +25,8 @@
             <%= simple_form_for [@flat, @booking], data: { controller: 'flatpickr' } do |f| %>
               <%= f.input :start_date, as: :string, placeholder: "#{current_day}", input_html: { data: { flatpickr_target: "startTime" } } %>
               <%= f.input :end_date, as: :string, placeholder: "#{current_day+3}", input_html: { data: { flatpickr_target: "endTime" } } %>
+              <%= f.input :adults, as: :integer %>
+              <%= f.input :children, as: :integer %>
               <%= f.submit class: "btn btn-primary w-100" %>
             <% end %>
             <%= link_to "Cancel", flats_path, class: "btn btn-danger my-2" %>
