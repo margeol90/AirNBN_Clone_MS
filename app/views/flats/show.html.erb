@@ -20,8 +20,8 @@
       <div class="col-4">
         <div class="card  border-secondary mb-3" style="width: 18rem;">
           <div class="bg-white rounded p-3">
-            <h5 class="text-center mt-4">Book this property</h5>
-            <%= @flat.price %>€ per night
+            <h5 class="card-title text-center"><strong>Book this property</strong></h5>
+            <h6 class="card-subtitle text-center"><%= @flat.price %>€ per night</h6>
             <%= simple_form_for [@flat, @booking], data: { controller: 'flatpickr' } do |f| %>
               <%= f.input :start_date, as: :string, placeholder: "#{current_day}", input_html: { data: { flatpickr_target: "startTime" } } %>
               <%= f.input :end_date, as: :string, placeholder: "#{current_day+3}", input_html: { data: { flatpickr_target: "endTime" } } %>
