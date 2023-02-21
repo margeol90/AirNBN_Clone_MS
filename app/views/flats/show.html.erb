@@ -8,7 +8,7 @@
           <h2><%= @flat.name %></h2>
         </div>
         <div class="flat-show-card">
-          <%= cl_image_tag @flat.photo.key, width:700, crop: :fill if flat.photo.attached?%>
+          <%= cl_image_tag @flat.photo.key, width:700, crop: :fill if @flat.photo.attached?%>
         </div>
         <% if policy(@flat).edit? %>
           <%= link_to "Edit", edit_flat_path, class: "btn btn-warning" %>
