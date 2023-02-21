@@ -5,7 +5,8 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-puts "Destroying all users"
+puts "Destroying all flats and users"
+Flat.destroy_all
 User.destroy_all
 puts "Creating a user"
 user = User.create!(email: "test@test.com", password: "12345678")
