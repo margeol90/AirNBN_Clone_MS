@@ -26,7 +26,7 @@
         <div class="flat-card">
           <%# creating image, for future cloudinary updating %>
           <div class="flat-card-image">
-            <%= cl_image_tag flat.photo.key, height:150, crop: :fill if flat.photo.attached? %>
+            <%= cl_image_tag flat.photo.key, height:180, crop: :fill if flat.photo.attached? %>
           </div>
           <%# creating card-content like previous examples %>
           <div class="flat-card-content">
