@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus";
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 
 // Connects to data-controller="map"
 export default class extends Controller {
@@ -17,12 +18,12 @@ export default class extends Controller {
     });
     this.#addMarkersToMap();
     this.#fitMapToMarkers();
-  }
-
-  #addMarkersToMap() {
-    this.markersValue.forEach((marker) => {
-      new mapboxgl.Marker().setLngLat([marker.lng, marker.lat]).addTo(this.map);
-    });
+    this.map.addControl(
+      new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl,
+      })
+    );
   }
 
   #fitMapToMarkers() {
@@ -30,6 +31,20 @@ export default class extends Controller {
     this.markersValue.forEach((marker) => {
       bounds.extend([marker.lng, marker.lat]);
     });
-    this.map.fitBounds(bounds, { padding: 50, duration: 150 });
+    this.map.fitBounds(bounds, { padding: 50, duration: 10 });
+  }
+
+  #addMarkersToMap() {
+    this.markersValue.forEach((marker) => {
+      const popup = new mapboxgl.Popup().setHTML(marker.info_window_html);
+      // !!adding a custom marker:
+      // const customMarker = document.createElement("div")
+      // customMarker.innerHTML = marker.marker_html
+
+      new mapboxgl.Marker() //or add (customMarker) into the parenthesis if we want to add a new marker
+        .setLngLat([marker.lng, marker.lat])
+        .setPopup(popup)
+        .addTo(this.map);
+    });
   }
 }

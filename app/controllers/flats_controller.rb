@@ -8,7 +8,10 @@ class FlatsController < ApplicationController
     @markers = @flats.geocoded.map do |flat|
       {
         lat: flat.latitude,
-        lng: flat.longitude
+        lng: flat.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { flat: })
+        # marker_html: render_to_string(partial: "marker") - if we want to change the marker, go to _marker.html.erb shared/view
+        # marker_html: render_to_string(partial: "marker", clocals: {flat: flat}) - add info to the marker from the _marker.html.erb file
       }
     end
   end
