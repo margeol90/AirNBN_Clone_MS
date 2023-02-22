@@ -4,6 +4,16 @@ class FlatsController < ApplicationController
 
   def index
     @flats = policy_scope(Flat).all # adding bundit stuff, "policy_scope()"
+    # geocoding stuff, scope filters only flats with coordinates
+    @markers = @flats.geocoded.map do |flat|
+      {
+        lat: flat.latitude,
+        lng: flat.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { flat: })
+        # marker_html: render_to_string(partial: "marker") - if we want to change the marker, go to _marker.html.erb shared/view
+        # marker_html: render_to_string(partial: "marker", clocals: {flat: flat}) - add info to the marker from the _marker.html.erb file
+      }
+    end
   end
 
   def new

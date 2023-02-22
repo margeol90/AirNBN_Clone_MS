@@ -17,10 +17,10 @@ flat2 = Flat.create(name: "Nature Valley Private Pool Villas", rooms: 4, price: 
 flat3 = Flat.create(name: "Villa Serenity, Brand New Luxury Beachfront Villa", rooms: 4, price: 899, user_id: user1.id)
 flat4 = Flat.create(name: "Alfresco Private Villa w/ Pool & Rice Field View", rooms: 1, price: 180, user_id: user1.id)
 puts "Complete"
-flat1.photo.attach(io: File.open(Rails.root.join("app/assets/images/flat1.jpg")), filename:"flat1")
-flat2.photo.attach(io: File.open(Rails.root.join("app/assets/images/flat2.jpg")), filename:"flat2")
-flat3.photo.attach(io: File.open(Rails.root.join("app/assets/images/flat3.jfif")), filename:"flat3")
-flat4.photo.attach(io: File.open(Rails.root.join("app/assets/images/flat4.jfif")), filename:"flat4")
+flat1.photo.attach(io: File.open(Rails.root.join("app/assets/images/flat1.jpg")), filename: "flat1")
+flat2.photo.attach(io: File.open(Rails.root.join("app/assets/images/flat2.jpg")), filename: "flat2")
+flat3.photo.attach(io: File.open(Rails.root.join("app/assets/images/flat3.jfif")), filename: "flat3")
+flat4.photo.attach(io: File.open(Rails.root.join("app/assets/images/flat4.jfif")), filename: "flat4")
 puts "Added images"
 user1.avatar.attach(io: File.open(Rails.root.join("app/assets/images/user1.png")), filename:"user1")
 user2.avatar.attach(io: File.open(Rails.root.join("app/assets/images/user2.jpg")), filename:"user2")
