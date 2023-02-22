@@ -1,16 +1,7 @@
 <%# creating main container %>
 <div class="container mt-3">
   <%# !! Dealing with mapbox %>
-  <div id='map' style='width: 400px; height: 300px;'></div>
-  <script>
-    mapboxgl.accessToken = 'pk.eyJ1IjoiZnJhbml0aXMiLCJhIjoiY2xlZWo0MGpoMGhnZDNwcDJ0NHYxMjZ4cSJ9.rTJzPsQxzmERxHj8O2DrlA';
-    const map = new mapboxgl.Map({
-    container: 'map', // container ID
-    style: 'mapbox://styles/mapbox/streets-v12', // style URL
-    center: [-74.5, 40], // starting position [lng, lat]
-    zoom: 9, // starting zoom
-    });
-  </script>
+  <div data-controller="map" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>" data-map-markers-value="<%= @markers.to_json %>" id='map' style='width: 100%; height: 300px;'></div>
   <%# dividing in rows %>
   <div class="row">
     <%# distribution col-12 %>

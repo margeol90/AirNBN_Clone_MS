@@ -4,6 +4,13 @@ class FlatsController < ApplicationController
 
   def index
     @flats = policy_scope(Flat).all # adding bundit stuff, "policy_scope()"
+    # geocoding stuff, scope filters only flats with coordinates
+    @markers = @flats.geocoded.map do |flat|
+      {
+        lat: flat.latitude,
+        lng: flat.longitude
+      }
+    end
   end
 
   def new
