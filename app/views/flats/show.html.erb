@@ -44,11 +44,13 @@
       <p><%= @flat.description %></p>
       <h3>Address</h3>
       <p><%= @flat.address %></p>
-      <h3>Reviews
-        <h3>
+      <h3>Reviews</h3>
+      <hr>
           <ul class="list-group">
             <% @bookings.each do |booking| %>
-              <li class="list-group-item"><%= booking.review&.content %></li>
+              <%= "⭐" * booking.review&.rating %>
+              <p><%= booking.review&.content %></p>
+              <hr>
             <% end %>
           </ul>
         </div>
