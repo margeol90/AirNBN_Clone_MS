@@ -19,7 +19,7 @@
     <hr>
     <div class="container">
       <% if user_signed_in? %>
-        <h2 class="text-success">Welcome back, <%= current_user.email %>!</h2>
+        <h2 class="text-success">Welcome back, <%= current_user.first_name %>!</h2>
       <% end %>
     </div>
   </body>

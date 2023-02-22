@@ -9,16 +9,19 @@ puts "Destroying all flats and users"
 Flat.destroy_all
 User.destroy_all
 puts "Creating a user"
-user = User.create!(email: "test@test.com", password: "12345678")
+user1 = User.create!(first_name: "Host", last_name: "Name", email: "host@test.com", password: "12345678")
+user2 = User.create!(first_name: "Renter", last_name: "Name", email: "renter@test.com", password: "12345678")
 puts "Creating flats"
-flat1 = Flat.create(name: "Beachside Villa at Balian Surf Break", description: "Great flat by the seas",
-                    address: "16 Villa Gaudelet, Paris", rooms: 2, price: 300, user_id: user.id)
-flat2 = Flat.create(name: "Nature Valley Private Pool Villas", rooms: 4, price: 450, user_id: user.id)
-flat3 = Flat.create(name: "Villa Serenity, Brand New Luxury Beachfront Villa", rooms: 4, price: 899, user_id: user.id)
-flat4 = Flat.create(name: "Alfresco Private Villa w/ Pool & Rice Field View", rooms: 1, price: 180, user_id: user.id)
+flat1 = Flat.create(name: "Beachside Villa at Balian Surf Break", description: "Great flat by the sea", address: "16 Villa Gaudelet, Paris", rooms: 2, price: 300, user_id: user1.id)
+flat2 = Flat.create(name: "Nature Valley Private Pool Villas", rooms: 4, price: 450, user_id: user1.id)
+flat3 = Flat.create(name: "Villa Serenity, Brand New Luxury Beachfront Villa", rooms: 4, price: 899, user_id: user1.id)
+flat4 = Flat.create(name: "Alfresco Private Villa w/ Pool & Rice Field View", rooms: 1, price: 180, user_id: user1.id)
 puts "Complete"
 flat1.photo.attach(io: File.open(Rails.root.join("app/assets/images/flat1.jpg")), filename: "flat1")
 flat2.photo.attach(io: File.open(Rails.root.join("app/assets/images/flat2.jpg")), filename: "flat2")
 flat3.photo.attach(io: File.open(Rails.root.join("app/assets/images/flat3.jfif")), filename: "flat3")
 flat4.photo.attach(io: File.open(Rails.root.join("app/assets/images/flat4.jfif")), filename: "flat4")
 puts "Added images"
+user1.avatar.attach(io: File.open(Rails.root.join("app/assets/images/user1.png")), filename:"user1")
+user2.avatar.attach(io: File.open(Rails.root.join("app/assets/images/user2.jpg")), filename:"user2")
+puts "Added avatar photos"
