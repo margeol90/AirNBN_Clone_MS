@@ -6,7 +6,19 @@ export default class extends Controller {
   static targets = [ "startTime", "endTime" ]
 
   connect() {
-    flatpickr(this.startTimeTarget, {})
-    flatpickr(this.endTimeTarget, {})
+    flatpickr(this.startTimeTarget, {
+      minDate: "today"
+    })
+    flatpickr(this.endTimeTarget, {
+      minDate: "today"
+    })
+    this.startTimeTarget.addEventListener("change", (e) => {
+      if (this.startTimeTarget != "") {
+        this.endTimeTarget.disabled = false
+      }
+      flatpickr(this.endTimeTarget, {
+        minDate: e.target.value
+        });
+    })
   }
 }
