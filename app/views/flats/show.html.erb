@@ -38,13 +38,13 @@
       <p><%= @flat.description %></p>
       <h3>Address</h3>
       <p><%= @flat.address %></p>
-      <h3>Reviews
+      <h3>Reviews</h3>
       <hr>
-        <h3>
           <ul class="list-group">
             <% @bookings.each do |booking| %>
               <%= "⭐" * booking.review&.rating %>
               <p><%= booking.review&.content %></p>
+              <hr>
             <% end %>
           </ul>
         </div>
