@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_one_attached :avatar
   has_many :flats
   has_many :bookings
   # Include default devise modules. Others available are:
