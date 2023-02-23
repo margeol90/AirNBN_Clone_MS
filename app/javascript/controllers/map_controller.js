@@ -6,6 +6,7 @@ export default class extends Controller {
   static values = {
     apiKey: String,
     markers: Array,
+    zoom: Number,
   };
 
   connect() {
@@ -14,7 +15,8 @@ export default class extends Controller {
       container: this.element, // container ID (our data-controler div in index.html.erb file)
       style: "mapbox://styles/mapbox/streets-v12", // style URL
       // center: [-74.5, 40], // starting position [lng, lat] Fran: We do not need to center, but if we want, uncomment this line
-      zoom: 15, // starting zoom Fran: Do not use a zoom to center either, so uncomment if we finally want to do it
+      // zoom: 23, starting zoom Fran: Do not use a zoom to center either, so uncomment if we finally want to do it
+      maxZoom: this.zoomValue,
     });
     this.#addMarkersToMap();
     this.#fitMapToMarkers();
