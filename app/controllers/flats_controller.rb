@@ -38,6 +38,13 @@ class FlatsController < ApplicationController
     @booking = Booking.new
     @bookings = @flat.bookings
     authorize @booking
+    @markers = {
+      lat: @flat.latitude,
+      lng: @flat.longitude,
+      info_window_html: render_to_string(partial: "info_window", locals: { flat: @flat })
+      # marker_html: render_to_string(partial: "marker") - if we want to change the marker, go to _marker.html.erb shared/view
+      # marker_html: render_to_string(partial: "marker", clocals: {flat: flat}) - add info to the marker from the _marker.html.erb file
+    }
   end
 
   def edit

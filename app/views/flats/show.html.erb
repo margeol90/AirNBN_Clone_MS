@@ -1,57 +1,61 @@
-<div class="container">
-  <% require 'date' %>
-  <% current_day = DateTime.current.to_date %>
-  <div class="container margin-top-negative">
-    <div class="row">
-      <div class="col-8">
-        <div class="flat-show-card">
-          <h2><%= @flat.name %></h2>
+<div class="container-fluid d-flex">
+  <div class="container-fluid">
+    <% require 'date' %>
+    <% current_day = DateTime.current.to_date %>
+    <div class="container margin-top-negative">
+      <div class="row">
+        <div class="col-8">
+          <div class="flat-show-card">
+            <h2><%= @flat.name %></h2>
+          </div>
+          <div class="flat-show-card">
+            <%= cl_image_tag @flat.photo.key, width:700, crop: :fill if @flat.photo.attached?%>
+          </div>
+          <% if policy(@flat).edit? %>
+            <%= link_to "Edit", edit_flat_path, class: "btn btn-warning" %>
+          <% end %>
+          <% if policy(@flat).destroy? %>
+            <%= link_to "Delete your flat", flat_path(@flat), class: "btn btn-danger my-2", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+          <% end %>
         </div>
-        <div class="flat-show-card">
-          <%= cl_image_tag @flat.photo.key, width:700, crop: :fill if @flat.photo.attached?%>
-        </div>
-        <% if policy(@flat).edit? %>
-          <%= link_to "Edit", edit_flat_path, class: "btn btn-warning" %>
-        <% end %>
-        <% if policy(@flat).destroy? %>
-          <%= link_to "Delete your flat", flat_path(@flat), class: "btn btn-danger my-2", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-        <% end %>
-      </div>
-      <div class="col-4">
-        <div class="card  border-secondary mb-3" style="width: 18rem;">
-          <div class="bg-white rounded p-3">
-            <h5 class="card-title text-center"><strong>Book this property</strong></h5>
-            <h6 class="card-subtitle text-center"><%= @flat.price %>€ per night</h6>
-            <%= simple_form_for [@flat, @booking], data: { controller: 'flatpickr' } do |f| %>
-              <%= f.input :start_date, as: :string, placeholder: "#{current_day}", input_html: { data: { flatpickr_target: "startTime" } } %>
-              <%= f.input :end_date, as: :string, placeholder: "#{current_day+3}", input_html: { data: { flatpickr_target: "endTime" } } %>
-              <div class="row">
-                <div class="col-sm-4">
-                  <%= f.input :adults, as: :integer, label: 'Adults', placeholder: "1", input_html: { min: '1', value: f.object.adults || '1' } %>
+        <div class="col-4">
+          <div class="card  border-secondary mb-3" style="width: 18rem;">
+            <div class="bg-white rounded p-3">
+              <h5 class="card-title text-center"><strong>Book this property</strong></h5>
+              <h6 class="card-subtitle text-center"><%= @flat.price %>€ per night</h6>
+              <%= simple_form_for [@flat, @booking], data: { controller: 'flatpickr' } do |f| %>
+                <%= f.input :start_date, as: :string, placeholder: "#{current_day}", input_html: { data: { flatpickr_target: "startTime" } } %>
+                <%= f.input :end_date, as: :string, placeholder: "#{current_day+3}", input_html: { data: { flatpickr_target: "endTime" } } %>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <%= f.input :adults, as: :integer, label: 'Adults', placeholder: "1", input_html: { min: '1', value: f.object.adults || '1' } %>
+                  </div>
+                  <div class="col-sm-5">
+                    <%= f.input :children, as: :integer, input_html: { min: '0', value: f.object.children || '0' } %>
+                  </div>
                 </div>
-                <div class="col-sm-5">
-                  <%= f.input :children, as: :integer, input_html: { min: '0', value: f.object.children || '0' } %>
-                </div>
-              </div>
-              <%= f.submit class: "btn btn-primary w-100 mb-2" %>
-            <% end %>
-            <%= link_to "Cancel", flats_path, class: "btn btn-danger w-100 mb-2" %>
+                <%= f.submit class: "btn btn-primary w-100 mb-2" %>
+              <% end %>
+              <%= link_to "Cancel", flats_path, class: "btn btn-danger w-100 mb-2" %>
+            </div>
           </div>
         </div>
+        <br>
+        <h3>Description</h3>
+        <p><%= @flat.description %></p>
+        <h3>Address</h3>
+        <p><%= @flat.address %></p>
+        <h3>Reviews</h3>
+        <hr>
+        <ul class="list-group">
+          <% @bookings.each do |booking| %>
+            <%= "⭐" * booking.review&.rating %>
+            <p><%= booking.review&.content %></p>
+            <hr>
+          <% end %>
+        </ul>
       </div>
-      <br>
-      <h3>Description</h3>
-      <p><%= @flat.description %></p>
-      <h3>Address</h3>
-      <p><%= @flat.address %></p>
-      <h3>Reviews</h3>
-      <hr>
-          <ul class="list-group">
-            <% @bookings.each do |booking| %>
-              <%= "⭐" * booking.review&.rating %>
-              <p><%= booking.review&.content %></p>
-              <hr>
-            <% end %>
-          </ul>
-        </div>
-      </div>
+    </div>
+  </div>
+  <div data-controller="map" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>" data-map-markers-value="<%= @markers.to_json %>" id='map' style='width: 100%; max-height: 100%; margin-left: 20'></div>
+</div>
