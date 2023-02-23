@@ -58,6 +58,6 @@
     </div>
   </div>
   <% if @flat.geocoded? %>
-    <div data-controller="map" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>" data-map-markers-value="<%= @markers.to_json %>" id='map' style='width: 100%; max-height: 100%; margin-left: 20'></div>
+    <div data-controller="map" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>" data-map-markers-value="<%= @markers.to_json %>" data-map-zoom-value=15 id='map' style='width: 100%; max-height: 100%; margin-left: 20'></div>
   <% end %>
 </div>
