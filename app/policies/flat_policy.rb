@@ -9,6 +9,10 @@ class FlatPolicy < ApplicationPolicy
     end
   end
 
+  def index?
+    return true
+  end
+
   def show?
     return true
   end

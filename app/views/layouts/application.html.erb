@@ -16,7 +16,7 @@
     <%= render 'shared/flashes' %>
     <%= yield %>
     <br>
-    <hr>
+    <%# <hr> %>
     <div class="container">
       <% if user_signed_in? %>
         <h2 class="text-success">Welcome back, <%= current_user.first_name %>!</h2>
