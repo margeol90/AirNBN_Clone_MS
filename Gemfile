@@ -73,6 +73,9 @@ gem "cloudinary"
 # Search
 gem "pg_search"
 
+# Use SVG files inline
+gem 'inline_svg'
+
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"

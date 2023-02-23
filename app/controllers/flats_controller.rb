@@ -6,13 +6,12 @@ class FlatsController < ApplicationController
     if params[:query].present?
       @flats = policy_scope(Flat).search_by_name_address_description(params[:query])
       if @flats.empty?
-        flash[:notice] = "No results."
+        flash[:alert] = "No results found. Displaying all flats instead"
         @flats = policy_scope(Flat)
       end
     else
       @flats = policy_scope(Flat) # adding bundit stuff, "policy_scope()"
     end
-    # authorize @flats
     # geocoding stuff, scope filters only flats with coordinates
     @markers = @flats.geocoded.map do |flat|
       {
