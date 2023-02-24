@@ -49,7 +49,7 @@
         <hr>
         <ul class="list-group">
           <% @bookings.each do |booking| %>
-            <%= "⭐" * booking.review&.rating %>
+            <%= "★" * booking.review&.rating + "☆" * (5-booking.review&.rating) %>
             <p><%= booking.review&.content %></p>
             <hr>
           <% end %>
