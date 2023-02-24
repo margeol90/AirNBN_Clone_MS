@@ -1,54 +1,59 @@
 <%# title %>
-<div class="container-fluid">
-  <div class="row">
-    <div class="text-xl-center"'>
-      <h1>AirNbN - Your best option for booking!</h1>
-    </div>
-  </div>
-  <%# creating main container %>
-  <div class="container-fluid d-flex">
-    <%# dividing in rows %>
-    <div class="container-fluid">
-      <div class="row">
-        <% @flats.each do |flat| %>
-          <%# dist md-4 %>
-          <div class="col sm">
-            <div class="w-100">
-              <%# creating flat-card %>
-              <div class="flat-card">
-                <%# creating image, for future cloudinary updating %>
-                <div class="flat-card-image">
-                  <%= cl_image_tag flat.photo.key, height:180, crop: :fill if flat.photo.attached? %>
-                </div>
-                <%# creating card-content like previous examples %>
-                <div class="flat-card-content">
-                  <%# card-title only name, discuss to stablish an address %>
-                  <div class="flat-card-title">
-                    <h4><%= flat.name %></h4>
-                  </div>
-                  <%# distribution flex %>
-                  <div class="d-flex">
-                    <%# distribution of room guests and price %>
-                    <div class="flex align-items-center">
-                      <i class="fa-solid fa-bed"></i>
-                      <span><%= flat.rooms %></span>
-                    </div>
-                    <div class="flex align-items-center ms-3">
-                      <i class="fa-solid fa-euro-sign"></i>
-                      <span><%= flat.price %></span>
-                    </div>
-                    <div class="flex align-items-center ms-5">
-                      <%= link_to "View this flat", flat_path(flat), class: "btn btn-success w-100" %>
-                    </div>
-                  </div>
-                </div>
+<div class="text-xl-center"'>
+  <h1>AirNbN - Your best option for booking!</h1>
+</div>
+<%# creating main container %>
+<div class="container-fluid d-flex">
+  <%# dividing in rows %>
+  <div class="container-fluid">
+    <% @flats.each do |flat| %>
+      <%# creating flat-card %>
+      <%= link_to flat_path(flat) do %>
+        <div class="card-flat">
+          <%# creating image, for future cloudinary updating %>
+          <div class="card-flat-image">
+            <%= cl_image_tag flat.photo.key, height:180, crop: :fill if flat.photo.attached? %>
+          </div>
+          <%# creating card-content like previous examples %>
+          <div class="card-flat-content">
+            <%# card-title only name, discuss to stablish an address %>
+            <div class="card-flat-title">
+              <h4><%= flat.name %></h4>
+            </div>
+            <%# distribution flex %>
+            <div class="d-flex">
+              <%# distribution of room guests and price %>
+              <div class="flex align-items-center">
+                <i class="fa-solid fa-bed"></i>
+                <span><%= flat.rooms %></span>
+              </div>
+              <div class="flex align-items-center ms-3">
+                <i class="fa-solid fa-euro-sign"></i>
+                <span><%= flat.price %></span>
               </div>
             </div>
           </div>
-        <% end %>
-      </div>
-    </div>
-    <%# !! Dealing with mapbox %>
-    <div data-controller="map" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>" data-map-markers-value="<%= @markers.to_json %>" data-map-zoom-value=10 id='map' style='width: 100%; max-height: 100%; margin-left: 20'></div>
+        </div>
+      <% end %>
+    <% end %>
+    <html>
+      <body>
+        <div class="container">
+          <br>
+          <div class="card-trip">
+            <img src="https://images.unsplash.com/photo-1522787345986-d5c7885a889e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80">
+            <div class="card-trip-infos">
+              <div>
+                <h2>Title here</h2>
+                <p>Short description here!</p>
+              </div>
+              <h2 class="card-trip-pricing">£99.99</h2>
+            </div>
+          </div>
+        </div>
+      </body>
+    </html>
   </div>
+  <%# !! Dealing with mapbox %>
+  <div data-controller="map" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>" data-map-markers-value="<%= @markers.to_json %>" data-map-zoom-value=10 id='map' style='width: 100%; max-height: 100%; margin-left: 20'></div>
 </div>
