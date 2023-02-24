@@ -1,0 +1,8 @@
+<div class="container">
+  <h1><%= "Review your stay at #{@booking.flat.name}"%></h1>
+  <%= simple_form_for [@booking, @review] do |f| %>
+    <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience", input_html: {data: {controller: "star-rating"}} %>
+    <%= f.input :content %>
+    <%= f.submit "Submit review", class: "btn btn-primary" %>
+  <% end %>
+</div>
