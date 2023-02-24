@@ -1,5 +1,5 @@
 <%# creating main container %>
-<div class="container mt-3">
+<div class="container-fluid">
   <%# dividing in rows %>
   <div class="row">
     <%# distribution col-12 %>
@@ -7,10 +7,12 @@
       <h1>Your flats</h1>
     </div>
   </div>
+  <div class="container-fluid">
   <div class="row">
     <% @flats.each do |flat| %>
       <%# dist md-4 %>
-      <div class="col-md-4">
+       <div class="col sm">
+            <div class="w-50">
         <%# creating flat-card %>
         <div class="flat-card">
           <%# creating image, for future cloudinary updating %>
