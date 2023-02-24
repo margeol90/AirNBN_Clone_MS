@@ -3,7 +3,25 @@ class FlatsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    @flats = policy_scope(Flat).all # adding bundit stuff, "policy_scope()"
+    if params[:query].present?
+      @flats = policy_scope(Flat).search_by_name_address_description(params[:query])
+      if @flats.empty?
+        flash[:alert] = "No results found. Displaying all flats instead"
+        @flats = policy_scope(Flat)
+      end
+    else
+      @flats = policy_scope(Flat) # adding bundit stuff, "policy_scope()"
+    end
+    # geocoding stuff, scope filters only flats with coordinates
+    @markers = @flats.geocoded.map do |flat|
+      {
+        lat: flat.latitude,
+        lng: flat.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { flat: })
+        # marker_html: render_to_string(partial: "marker") - if we want to change the marker, go to _marker.html.erb shared/view
+        # marker_html: render_to_string(partial: "marker", clocals: {flat: flat}) - add info to the marker from the _marker.html.erb file
+      }
+    end
   end
 
   def new
@@ -28,6 +46,13 @@ class FlatsController < ApplicationController
     @booking = Booking.new
     @bookings = @flat.bookings
     authorize @booking
+    @markers = [{
+      lat: @flat.latitude,
+      lng: @flat.longitude,
+      info_window_html: render_to_string(partial: "info_window", locals: { flat: @flat })
+      # marker_html: render_to_string(partial: "marker") - if we want to change the marker, go to _marker.html.erb shared/view
+      # marker_html: render_to_string(partial: "marker", clocals: {flat: flat}) - add info to the marker from the _marker.html.erb file
+    }]
   end
 
   def edit

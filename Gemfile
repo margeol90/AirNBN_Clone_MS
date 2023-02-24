@@ -33,6 +33,9 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+# Adding GEOCODER
+gem "geocoder"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -66,6 +69,12 @@ end
 
 # cloudinary
 gem "cloudinary"
+
+# Search
+gem "pg_search"
+
+# Use SVG files inline
+gem 'inline_svg'
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
