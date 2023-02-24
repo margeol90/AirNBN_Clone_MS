@@ -42,8 +42,6 @@ class FlatsController < ApplicationController
     end
   end
 
-<<<<<<< HEAD
-=======
   def show
     @booking = Booking.new
     @bookings = @flat.bookings
@@ -57,7 +55,6 @@ class FlatsController < ApplicationController
     }]
   end
 
->>>>>>> master
   def edit
   end
 
