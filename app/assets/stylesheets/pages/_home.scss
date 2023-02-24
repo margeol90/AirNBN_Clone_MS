@@ -1,1 +1,25 @@
 // Specific CSS for your home-page
+.flex-wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.travel-cards img {
+  margin-top: 40px;
+  height: 300px;
+  width: 300px;
+}
+
+.btn-rounded-blue {
+  border-radius: 5px;
+  color: rgb(46, 46, 46);
+  text-decoration: none;
+  padding: 10px 30px;
+  background-color: #FEDEFF;
+
+  &:hover {
+    color: white;
+  }
+}
