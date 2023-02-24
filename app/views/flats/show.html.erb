@@ -47,12 +47,17 @@
         <p><%= @flat.address %></p>
         <h3>Reviews</h3>
         <hr>
-        <ul class="list-group">
-          <% @bookings.each do |booking| %>
-            <%= "★" * booking.review&.rating + "☆" * (5-booking.review&.rating) %>
-            <p><%= booking.review&.content %></p>
-            <hr>
-          <% end %>
+        <ul class="list-group list-unstyled">
+            <% @bookings.each do |booking| %>
+              <li>
+                <span class="fa-stack-1x" >
+                  <%= icon('fa-solid', 'star' ) * booking.review&.rating + icon('fa-regular', 'star') * (5-booking.review&.rating) %>
+                </span>
+              </li>
+              <li><p><strong><%= current_user.first_name+" "+current_user.last_name %></strong></p></li>
+              <li><p><%= booking.review&.content %></p></li>
+              <hr>
+            <% end %>
         </ul>
       </div>
     </div>
