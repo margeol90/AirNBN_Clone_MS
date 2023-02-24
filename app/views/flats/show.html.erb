@@ -51,7 +51,7 @@
             <% @bookings.each do |booking| %>
               <li>
                 <span class="fa-stack-1x" >
-                  <%= icon('fa-solid', 'star') * booking.review&.rating + icon('fa-regular', 'star') * (5-booking.review&.rating) %>
+                  <%= icon('fa-solid', 'star' ) * booking.review&.rating + icon('fa-regular', 'star') * (5-booking.review&.rating) %>
                 </span>
               </li>
               <li><p><strong><%= current_user.first_name+" "+current_user.last_name %></strong></p></li>
