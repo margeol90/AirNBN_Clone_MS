@@ -3,10 +3,10 @@
   <p class="text-center">Find you favourite flat, and book anywhere around the world</p>
   <%= form_with url: flats_path, method: :get, class: "d-flex w-50 p-3 align-middle mx-auto" do %>
     <%= text_field_tag :query,params[:query], class: "form-control", placeholder: "Find a flat.." %>
-    <%= submit_tag "Search", class: "btn-rounded-blue mx-3" %>
+    <%= submit_tag "Search", class: "light-blue-btn mx-3" %>
   <% end %>
   <div class="h-100 d-flex align-items-center justify-content-center">
-    <%= link_to "View All", flats_path, class: "btn-rounded-blue" %>
+    <%= link_to "View All", flats_path, class: "light-blue-btn" %>
   </div>
   <div class="travel-cards d-flex flex-row justify-content-between">
     <%= image_tag "travelling.svg" %>

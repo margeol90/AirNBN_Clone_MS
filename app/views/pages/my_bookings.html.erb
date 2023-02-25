@@ -1,19 +1,24 @@
 <div class="container">
   <h1>My Bookings</h1>
-  <% @bookings.each do |booking| %>
-    <div class="card-product my-3">
-      <% if booking.flat.photo.attached? %>
-        <%= cl_image_tag booking.flat.photo.key %>
-      <% else %>
-        <img src="https://liftlearning.com/wp-content/uploads/2020/09/default-image.png" />
-      <% end %>
-      <div class="card-product-infos">
-        <h2 class="my-2"><%= booking.flat.name %></h2>
-        <p>Check in: <%= booking.start_date %> </p>
-        <p>Check out: <%= booking.end_date %> </p>
-        <%= link_to "Cancel Reservation", booking_path(booking), class: "btn btn-danger", data: { turbo_method: :delete, turbo_confirm: "You are cancelling your booking reservation at #{booking.flat.name}" }  %>
-        <%= link_to "Write a review", new_booking_review_path(booking), class:"btn btn-success" %>
+  <div class="flex-container">
+    <% @bookings.each do |booking| %>
+      <div class="card-product my-3">
+        <% if booking.flat.photo.attached? %>
+          <%= cl_image_tag booking.flat.photo.key %>
+        <% else %>
+          <img src="https://liftlearning.com/wp-content/uploads/2020/09/default-image.png" />
+        <% end %>
+        <div class="card-product-infos">
+          <h2 class="my-2"><%= booking.flat.name %></h2>
+          <p>Check in: <%= booking.start_date %> </p>
+          <p>Check out: <%= booking.end_date %> </p>
+          <div class="my-2">
+            <%= link_to "Cancel Reservation", booking_path(booking), class: "blue-btn", data: { turbo_method: :delete, turbo_confirm: "You are cancelling your booking reservation at #{booking.flat.name}" }  %>
+            <%= link_to "Write a review", new_booking_review_path(booking), class:"light-blue-btn" %>
+            <%= link_to "View Flat", flat_path(booking.flat), class:"pink-btn" %>
+          </div>
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
