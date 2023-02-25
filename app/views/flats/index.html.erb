@@ -9,14 +9,20 @@
           <%= cl_image_tag flat.photo.key, :class => "img", crop: :fill if flat.photo.attached? %>
           <div class="card-flat-info">
             <div>
-              <h2><%= flat.name %></h2>
-              <p><%= flat.description.truncate(20, separator: ' ')%></p>
-            </div>
-            <div class="card-flat-attr">
-              <i class="fa-solid fa-bed"></i>
-              <span><%= flat.rooms %></span>
-              <i class="fa-solid fa-euro-sign"></i>
-              <span><%= flat.price %></span>
+              <div>
+                <h2><%= flat.name %></h2>
+              </div>
+              <div class="card-desc-attr">
+                <div>
+                  <p><%= flat.description.truncate(20, separator: ' ')%></p>
+                </div>
+                <div class="card-flat-attr">
+                  <i class="fa-solid fa-bed"></i>
+                  <span><%= flat.rooms %></span>
+                  <i class="fa-solid fa-euro-sign"></i>
+                  <span><%= flat.price %></span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
