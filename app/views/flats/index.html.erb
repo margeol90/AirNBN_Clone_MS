@@ -10,7 +10,7 @@
           <div class="card-flat-info">
             <div>
               <h2><%= flat.name %></h2>
-              <p><%= flat.description %></p>
+              <p><%= flat.description.truncate(20, separator: ' ')%></p>
             </div>
             <div class="card-flat-attr">
               <i class="fa-solid fa-bed"></i>
