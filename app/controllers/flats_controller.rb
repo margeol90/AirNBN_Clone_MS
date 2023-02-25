@@ -53,6 +53,8 @@ class FlatsController < ApplicationController
       # marker_html: render_to_string(partial: "marker") - if we want to change the marker, go to _marker.html.erb shared/view
       # marker_html: render_to_string(partial: "marker", clocals: {flat: flat}) - add info to the marker from the _marker.html.erb file
     }]
+
+    @has_review = @bookings.any? { |booking| !booking.review.nil? }
   end
 
   def edit
