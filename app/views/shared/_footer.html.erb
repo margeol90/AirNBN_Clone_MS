@@ -1,6 +1,6 @@
-<div class="footer">
+<div class="footer fixed-bottom">
   <% if user_signed_in? %>
-    <h2 class="text-success">Welcome back, <%= current_user.first_name %>!</h2>
+    <h4 class="text-success">Welcome back, <%= current_user.first_name %>!</h4>
   <% end %>
   <div class="footer-links">
     <a href="#"><i class="fab fa-github"></i></a>

@@ -50,25 +50,31 @@
         <p><i class="fa-solid fa-bed"></i> -- <%= @flat.rooms %></p>
         <h3>Reviews</h3>
         <hr>
-        <% @bookings.each do |booking| %>
-          <% if booking.review.nil? %>
-            <p>This property does not have any reviews yet.</p>
-          <% else %>
-            <ul class="list-group list-unstyled">
-              <li>
-                <span class="fa-stack-1x" >
-                  <%= icon('fa-solid', 'star' ) * booking.review&.rating + icon('fa-regular', 'star') * (5-booking.review&.rating) %>
-                </span>
-              </li>
-              <li><p><strong><%= current_user.first_name+" "+current_user.last_name %></strong></p></li>
-              <li><p><%= booking.review&.content %></p></li>
-              <hr>
-            </ul>
+        <% if @has_review %>
+          <% @bookings.each do |booking| %>
+            <% if !booking.review.nil? %>
+              <ul class="list-group list-unstyled">
+                <li>
+                  <span class="fa-stack-1x" >
+                    <%= icon('fa-solid', 'star' ) * booking.review&.rating + icon('fa-regular', 'star') * (5-booking.review&.rating) %>
+                  </span>
+                </li>
+                <li>
+                  <p><strong><%= current_user.first_name+" "+current_user.last_name %></strong></p>
+                </li>
+                <li>
+                  <p><%= booking.review&.content %></p>
+                </li>
+                <hr>
+              </ul>
+            <% end %>
           <% end %>
+        <% else %>
+          <p>This property does not have any reviews yet.</p>
         <% end %>
         <h3>Location</h3>
         <% if @flat.geocoded? %>
-          <div data-controller="map" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>" data-map-markers-value="<%= @markers.to_json %>" data-map-zoom-value=15 id='map'></div>
+          <div data-controller="map" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>" data-map-markers-value="<%= @markers.to_json %>" data-map-zoom-value=15 id='show-map'></div>
         <% end %>
       </div>
     </div>
