@@ -7,6 +7,7 @@
         <div class="col-8">
           <div class="flat-show-card">
             <h2><%= @flat.name %></h2>
+            <p><%= @flat.address %></p>
           </div>
           <div class="flat-show-card">
             <%= cl_image_tag @flat.photo.key, width:700, crop: :fill if @flat.photo.attached?%>
@@ -18,35 +19,38 @@
             <%= link_to "Delete your flat", flat_path(@flat), class: "btn btn-danger my-2", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
           <% end %>
         </div>
-        <div class="col-4">
-          <div class="card  border-secondary mb-3" style="width: 18rem;">
-            <div class="bg-white rounded p-3">
-              <h5 class="card-title text-center"><strong>Book this property</strong></h5>
-              <h6 class="card-subtitle text-center"><%= @flat.price %>€ per night</h6>
-              <%= simple_form_for [@flat, @booking], data: { controller: 'flatpickr' } do |f| %>
-                <%= f.input :start_date, as: :string, placeholder: "#{current_day}", input_html: { data: { flatpickr_target: "startTime" } } %>
-                <%= f.input :end_date, as: :string, placeholder: "#{current_day+3}", input_html: { data: { flatpickr_target: "endTime" } } %>
-                <div class="row">
-                  <div class="col-sm-4">
-                    <%= f.input :adults, as: :integer, label: 'Adults', placeholder: "1", input_html: { min: '1', value: f.object.adults || '1' } %>
+        <% unless @flat.user == current_user %>
+          <div class="col-4">
+            <div class="card  border-secondary mb-3" style="width: 18rem;">
+              <div class="bg-white rounded p-3">
+                <h5 class="card-title text-center"><strong>Book this property</strong></h5>
+                <h6 class="card-subtitle text-center"><%= @flat.price %>€ per night</h6>
+                <%= simple_form_for [@flat, @booking], data: { controller: 'flatpickr' } do |f| %>
+                  <%= f.input :start_date, as: :string, placeholder: "#{current_day}", input_html: { data: { flatpickr_target: "startTime" } } %>
+                  <%= f.input :end_date, as: :string, placeholder: "#{current_day+3}", input_html: { data: { flatpickr_target: "endTime" } } %>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <%= f.input :adults, as: :integer, label: 'Adults', placeholder: "1", input_html: { min: '1', value: f.object.adults || '1' } %>
+                    </div>
+                    <div class="col-sm-5">
+                      <%= f.input :children, as: :integer, input_html: { min: '0', value: f.object.children || '0' } %>
+                    </div>
                   </div>
-                  <div class="col-sm-5">
-                    <%= f.input :children, as: :integer, input_html: { min: '0', value: f.object.children || '0' } %>
-                  </div>
-                </div>
-                <%= f.submit class: "btn btn-primary w-100 mb-2" %>
-              <% end %>
-              <%= link_to "Cancel", flats_path, class: "btn btn-danger w-100 mb-2" %>
+                  <%= f.submit class: "btn btn-primary w-100 mb-2" %>
+                <% end %>
+                <%= link_to "Cancel", flats_path, class: "btn btn-danger w-100 mb-2" %>
+              </div>
             </div>
-          </div>
+          <% end %>
         </div>
         <br>
         <h3>Description</h3>
         <p><%= @flat.description %></p>
-        <h3>Address</h3>
-        <p><%= @flat.address %></p>
+        <h3>Utilities</h3>
+        <p><i class="fa-solid fa-bed"></i> -- <%= @flat.rooms %></p>
         <h3>Reviews</h3>
         <hr>
+<<<<<<< HEAD
         <% if @has_review %>
           <% @bookings.each do |booking| %>
             <% if !booking.review.nil? %>
@@ -68,6 +72,27 @@
         <h3>Location</h3>
         <% if @flat.geocoded? %>
           <div data-controller="map" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>" data-map-markers-value="<%= @markers.to_json %>" data-map-zoom-value=15 id='show-map'></div>
+=======
+        <% @bookings.each do |booking| %>
+          <% if booking.review.nil? %>
+            <p>This property does not have any reviews yet.</p>
+          <% else %>
+            <ul class="list-group list-unstyled">
+              <li>
+                <span class="fa-stack-1x" >
+                  <%= icon('fa-solid', 'star' ) * booking.review&.rating + icon('fa-regular', 'star') * (5-booking.review&.rating) %>
+                </span>
+              </li>
+              <li><p><strong><%= current_user.first_name+" "+current_user.last_name %></strong></p></li>
+              <li><p><%= booking.review&.content %></p></li>
+              <hr>
+            </ul>
+          <% end %>
+        <% end %>
+        <h3>Location</h3>
+        <% if @flat.geocoded? %>
+          <div data-controller="map" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>" data-map-markers-value="<%= @markers.to_json %>" data-map-zoom-value=15 id='map'></div>
+>>>>>>> master
         <% end %>
       </div>
     </div>
