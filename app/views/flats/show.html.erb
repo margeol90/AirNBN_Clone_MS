@@ -1,4 +1,4 @@
-<div class="container-fluid d-flex">
+<div class="content">
   <div class="container-fluid">
     <% require 'date' %>
     <% current_day = DateTime.current.to_date %>
@@ -63,6 +63,6 @@
     </div>
   </div>
   <% if @flat.geocoded? %>
-    <div data-controller="map" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>" data-map-markers-value="<%= @markers.to_json %>" data-map-zoom-value=15 id='map' style='width: 100%; max-height: 100%; margin-left: 20'></div>
+    <div data-controller="map" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>" data-map-markers-value="<%= @markers.to_json %>" data-map-zoom-value=15 id='map'></div>
   <% end %>
 </div>

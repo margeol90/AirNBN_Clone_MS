@@ -1,54 +1,28 @@
-<%# title %>
-<div class="container-fluid">
-  <div class="row">
-    <div class="text-xl-center"'>
-      <h1>AirNbN - Your best option for booking!</h1>
-    </div>
-  </div>
-  <%# creating main container %>
-  <div class="container-fluid d-flex">
-    <%# dividing in rows %>
-    <div class="container-fluid">
-      <div class="row">
-        <% @flats.each do |flat| %>
-          <%# dist md-4 %>
-          <div class="col sm">
-            <div class="w-100">
-              <%# creating flat-card %>
-              <div class="flat-card">
-                <%# creating image, for future cloudinary updating %>
-                <div class="flat-card-image">
-                  <%= cl_image_tag flat.photo.key, height:180, crop: :fill if flat.photo.attached? %>
-                </div>
-                <%# creating card-content like previous examples %>
-                <div class="flat-card-content">
-                  <%# card-title only name, discuss to stablish an address %>
-                  <div class="flat-card-title">
-                    <h4><%= flat.name %></h4>
-                  </div>
-                  <%# distribution flex %>
-                  <div class="d-flex">
-                    <%# distribution of room guests and price %>
-                    <div class="flex align-items-center">
-                      <i class="fa-solid fa-bed"></i>
-                      <span><%= flat.rooms %></span>
-                    </div>
-                    <div class="flex align-items-center ms-3">
-                      <i class="fa-solid fa-euro-sign"></i>
-                      <span><%= flat.price %></span>
-                    </div>
-                    <div class="flex align-items-center ms-5">
-                      <%= link_to "View this flat", flat_path(flat), class: "btn btn-success w-100" %>
-                    </div>
-                  </div>
-                </div>
-              </div>
+<div class="text-xl-center"'>
+  <h1>AirNbN - Your best option for booking!</h1>
+</div>
+<div class="content">
+  <div class="card-container">
+    <% @flats.each do |flat| %>
+      <%= link_to flat_path(flat), :class => "text-decoration-none" do %>
+        <div class="card-flat">
+          <%= cl_image_tag flat.photo.key, :class => "img", crop: :fill if flat.photo.attached? %>
+          <div class="card-flat-info">
+            <div>
+              <h2><%= flat.name %></h2>
+              <p><%= flat.description %></p>
+            </div>
+            <div class="card-flat-attr">
+              <i class="fa-solid fa-bed"></i>
+              <span><%= flat.rooms %></span>
+              <i class="fa-solid fa-euro-sign"></i>
+              <span><%= flat.price %></span>
             </div>
           </div>
-        <% end %>
-      </div>
-    </div>
-    <%# !! Dealing with mapbox %>
-    <div data-controller="map" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>" data-map-markers-value="<%= @markers.to_json %>" data-map-zoom-value=10 id='map' style='width: 100%; max-height: 100%; margin-left: 20'></div>
+        </div>
+      <% end %>
+    <% end %>
   </div>
+  <%# !! Dealing with mapbox %>
+  <div data-controller="map" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>" data-map-markers-value="<%= @markers.to_json %>" data-map-zoom-value=10 id='map'></div>
 </div>
