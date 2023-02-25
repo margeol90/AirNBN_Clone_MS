@@ -11,18 +11,16 @@
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
   </head>
+  <header>
+    <%= render 'shared/navbar' %>
+  </header>
   <body>
-    <header>
-      <%= render 'shared/navbar' %>
-    </header>
-    <div class="flex-wrapper">
-      <main>
-        <%= render 'shared/flashes' %>
-        <%= yield %>
-      </main>
-      <footer>
-        <%= render 'shared/footer' %>
-      </footer>
-    </div>
+    <main>
+      <%= render 'shared/flashes' %>
+      <%= yield %>
+    </main>
   </body>
+  <footer>
+    <%= render 'shared/footer' %>
+  </footer>
 </html>

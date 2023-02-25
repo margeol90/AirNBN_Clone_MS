@@ -4,7 +4,8 @@
 
 .card-container {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-auto-rows: 1fr;
+  // grid-template-columns: 1fr; do we need it?
   grid-gap: 16px;
   padding: 16px;
   flex-grow: 1;
