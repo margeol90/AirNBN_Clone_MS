@@ -28,10 +28,18 @@
   .card-flat-info {
     padding: 16px;
     display: flex;
+    flex-direction: column;
     align-items: flex-end;
     justify-content: space-between;
-    position: relative;
+    gap: 10px;
     color: black;
+
+    .card-desc-attr{
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+
   }
 
   .card-flat-attr {
