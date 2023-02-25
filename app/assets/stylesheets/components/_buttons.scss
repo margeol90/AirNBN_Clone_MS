@@ -1,0 +1,11 @@
+.warning {
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: rgb(45, 45, 45);
+  background-color: #FEDEFF;
+
+  &:hover {
+    color: rgb(55, 55, 55)
+  }
+}

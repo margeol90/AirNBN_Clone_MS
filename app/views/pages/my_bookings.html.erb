@@ -13,6 +13,7 @@
         <p>Check out: <%= booking.end_date %> </p>
         <%= link_to "Cancel Reservation", booking_path(booking), class: "btn btn-danger", data: { turbo_method: :delete, turbo_confirm: "You are cancelling your booking reservation at #{booking.flat.name}" }  %>
         <%= link_to "Write a review", new_booking_review_path(booking), class:"btn btn-success" %>
+        <%= link_to "View Flat", flat_path(booking.flat), class:"warning" %>
       </div>
     </div>
   <% end %>
