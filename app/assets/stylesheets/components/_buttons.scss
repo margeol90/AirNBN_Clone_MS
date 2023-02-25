@@ -1,9 +1,36 @@
-.warning {
+.pink-btn {
   padding: 10px 20px;
   border-radius: 5px;
   text-decoration: none;
   color: rgb(45, 45, 45);
   background-color: #FEDEFF;
+  border: none;
+
+  &:hover {
+    color: rgb(55, 55, 55)
+  }
+}
+
+.blue-btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: rgb(45, 45, 45);
+  background-color: #93C6E7;
+  border: none;
+
+  &:hover {
+    color: rgb(55, 55, 55)
+  }
+}
+
+.light-blue-btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: rgb(45, 45, 45);
+  background-color: #B9F3FC;
+  border: none;
 
   &:hover {
     color: rgb(55, 55, 55)
