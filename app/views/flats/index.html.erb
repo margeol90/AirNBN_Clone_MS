@@ -1,25 +1,24 @@
 <div class="text-xl-center"'>
-  <h1>AirNbN - Your best option for booking!</h1>
+  <h1 class="text-center">View all flats</h1>
 </div>
 <div class="content">
   <div class="card-container">
     <% @flats.each do |flat| %>
       <%= link_to flat_path(flat), :class => "text-decoration-none" do %>
-        <div class="card-flat">
+        <div class="card-flat align-items-stretch">
           <%= cl_image_tag flat.photo.key, :class => "img", crop: :fill if flat.photo.attached? %>
           <div class="card-flat-info">
             <div>
               <h2><%= flat.name %></h2>
             </div>
-            <div class="card-desc-attr">
-              <div>
-                <p><%= flat.description.truncate(20, separator: ' ')%></p>
-              </div>
-              <div class="card-flat-attr">
+            <div class="d-flex justify-content-between">
+              <div class="rooms">
                 <i class="fa-solid fa-bed"></i>
                 <span><%= flat.rooms %></span>
+              </div>
+              <div class="price">
                 <i class="fa-solid fa-euro-sign"></i>
-                <span><%= flat.price %></span>
+                <span><%= flat.price %>/night</span>
               </div>
             </div>
           </div>
