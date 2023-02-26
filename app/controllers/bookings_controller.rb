@@ -7,11 +7,13 @@ class BookingsController < ApplicationController
     authorize @booking
     @booking.flat = @flat
     @booking.user = current_user
-    if @booking.save!
-      # we can redirect to the profile page or somewhere else later
+    if @booking.valid?
+      @booking.save!
       redirect_to my_bookings_path
+      flash[:notice] = 'Your booking is saved!'
     else
-      render :new, notice: "Your booking was not processed. Try again"
+      redirect_to flat_path(@flat)
+      flash[:alert] = 'Please introduce a start date and end date'
     end
   end
 
