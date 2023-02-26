@@ -16,20 +16,18 @@
           <% end %>
           <div class="card-product-infos">
             <h2 class="my-2"><%= flat.name %></h2>
-            <p><%= flat.description.truncate(20, separator: ' ')%></p>
-            <div class="card-flat-attr">
-              <i class="fa-solid fa-bed"></i>
-              <span><%= flat.rooms %></span>
-              <i class="fa-solid fa-euro-sign"></i>
-              <span><%= flat.price %></span>
-            </div>
+            <i class="fa-solid fa-bed"></i>
+            <span><%= flat.rooms %></span>
+            <i class="fa-solid fa-euro-sign"></i>
+            <span><%= flat.price %></span>
             <div class="my-4">
               <% if policy(flat).edit? %>
-                <%= link_to "Edit", edit_flat_path(flat), class: "pink-btn" %>
+                <%= link_to "Edit", edit_flat_path(flat), class: "light-blue-btn" %>
               <% end %>
               <% if policy(flat).destroy? %>
                 <%= link_to "Delete your flat", flat_path(flat), class: "blue-btn", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
               <% end %>
+              <%= link_to "View Flat", flat_path(flat), class: "pink-btn" %>
             </div>
           </div>
         </div>

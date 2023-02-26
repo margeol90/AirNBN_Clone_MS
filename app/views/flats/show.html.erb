@@ -7,14 +7,14 @@
         <div class="mb-3">
           <%= link_to "Back", :back, class: "pink-btn" %>
         </div>
-        <div class="col-8">
+        <div class="col-sm-4 col-md-8">
           <br>
           <div class="flat-show-card">
             <h2><%= @flat.name %></h2>
             <p><%= @flat.address %></p>
           </div>
           <div class="flat-show-card">
-            <%= cl_image_tag @flat.photo.key, width:700, crop: :fill if @flat.photo.attached?%>
+            <%= cl_image_tag @flat.photo.key, width:700, crop: :fill, style: "border-radius: 15px;" if @flat.photo.attached?%>
           </div>
           <% if policy(@flat).edit? %>
             <%= link_to "Edit", edit_flat_path, class: "btn btn-warning" %>
@@ -56,7 +56,7 @@
             <div data-controller="map" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>" data-map-markers-value="<%= @markers.to_json %>" data-map-zoom-value=15 id='show-map'></div>
           <% end %>
         </div>
-        <div class="col-4">
+        <div class="col-2">
           <% unless @flat.user == current_user %>
             <div class="card border-secondary mb-3" id="booking-form" style="width: 18rem;">
               <div class="bg-white rounded p-3">

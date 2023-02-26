@@ -10,7 +10,7 @@ export default class extends Controller {
       minDate: "today"
     })
     flatpickr(this.endTimeTarget, {
-      minDate: "today"
+      minDate: "tomorrow"
     })
     this.startTimeTarget.addEventListener("change", (e) => {
       if (this.startTimeTarget != "") {
