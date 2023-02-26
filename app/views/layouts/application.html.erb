@@ -14,13 +14,15 @@
   <header>
     <%= render 'shared/navbar' %>
   </header>
-  <body>
-    <main>
-      <%= render 'shared/flashes' %>
-      <%= yield %>
-    </main>
-  </body>
-  <footer>
-    <%= render 'shared/footer' %>
-  </footer>
+  <div class="flex-wrapper">
+    <body>
+      <main>
+        <%= render 'shared/flashes' %>
+        <%= yield %>
+      </main>
+    </body>
+    <footer>
+      <%= render 'shared/footer' %>
+    </footer>
+  </div>
 </html>
