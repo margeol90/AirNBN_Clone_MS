@@ -18,12 +18,14 @@
           <i class="fa-solid fa-euro-sign"></i>
           <span><%= flat.price %></span>
         </div>
-        <% if policy(flat).edit? %>
-          <%= link_to "Edit", edit_flat_path(flat), class: "btn btn-warning" %>
-        <% end %>
-        <% if policy(flat).destroy? %>
-          <%= link_to "Delete your flat", flat_path(flat), class: "btn btn-danger my-2", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-        <% end %>
+        <div class="my-4">
+          <% if policy(flat).edit? %>
+            <%= link_to "Edit", edit_flat_path(flat), class: "pink-btn" %>
+          <% end %>
+          <% if policy(flat).destroy? %>
+            <%= link_to "Delete your flat", flat_path(flat), class: "blue-btn", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+          <% end %>
+        </div>
       </div>
     </div>
   <% end %>
