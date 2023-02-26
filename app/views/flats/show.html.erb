@@ -1,10 +1,14 @@
 <div class="content">
   <div class="container-fluid">
-    <% require 'date' %>
+    <% require "date" %>
     <% current_day = DateTime.current.to_date %>
     <div class="container margin-top-negative">
       <div class="row">
+        <div class="mb-3">
+          <%= link_to "Back", :back, class: "pink-btn" %>
+        </div>
         <div class="col-8">
+          <br>
           <div class="flat-show-card">
             <h2><%= @flat.name %></h2>
             <p><%= @flat.address %></p>
@@ -18,10 +22,43 @@
           <% if policy(@flat).destroy? %>
             <%= link_to "Delete your flat", flat_path(@flat), class: "btn btn-danger my-2", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
           <% end %>
+          <br>
+          <h3>Description</h3>
+          <p><%= @flat.description %></p>
+          <h3>Utilities</h3>
+          <p><i class="fa-solid fa-bed"></i> -- <%= @flat.rooms %></p>
+          <h3>Reviews</h3>
+          <hr>
+          <% if @has_review %>
+            <% @bookings.each do |booking| %>
+              <% if !booking.review.nil? %>
+                <ul class="list-group list-unstyled">
+                  <li>
+                    <span class="fa-stack-1x" >
+                      <%= icon('fa-solid', 'star' ) * booking.review&.rating + icon('fa-regular', 'star') * (5-booking.review&.rating) %>
+                    </span>
+                  </li>
+                  <li>
+                    <p><strong><%= current_user.first_name+" "+current_user.last_name %></strong></p>
+                  </li>
+                  <li>
+                    <p><%= booking.review&.content %></p>
+                  </li>
+                  <hr>
+                </ul>
+              <% end %>
+            <% end %>
+          <% else %>
+            <p>This property does not have any reviews yet.</p>
+          <% end %>
+          <h3>Location</h3>
+          <% if @flat.geocoded? %>
+            <div data-controller="map" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>" data-map-markers-value="<%= @markers.to_json %>" data-map-zoom-value=15 id='show-map'></div>
+          <% end %>
         </div>
-        <% unless @flat.user == current_user %>
-          <div class="col-4">
-            <div class="card  border-secondary mb-3" style="width: 18rem;">
+        <div class="col-4">
+          <% unless @flat.user == current_user %>
+            <div class="card border-secondary mb-3" id="booking-form" style="width: 18rem;">
               <div class="bg-white rounded p-3">
                 <h5 class="card-title text-center"><strong>Book this property</strong></h5>
                 <h6 class="card-subtitle text-center"><%= @flat.price %>€ per night</h6>
@@ -36,46 +73,11 @@
                       <%= f.input :children, as: :integer, input_html: { min: '0', value: f.object.children || '0' } %>
                     </div>
                   </div>
-                  <%= f.submit class: "btn btn-primary w-100 mb-2" %>
+                  <%= f.submit class: "blue-btn w-100 mb-2" %>
                 <% end %>
-                <%= link_to "Cancel", flats_path, class: "btn btn-danger w-100 mb-2" %>
               </div>
             </div>
           <% end %>
-        </div>
-        <br>
-        <h3>Description</h3>
-        <p><%= @flat.description %></p>
-        <h3>Utilities</h3>
-        <p><i class="fa-solid fa-bed"></i> -- <%= @flat.rooms %></p>
-        <h3>Reviews</h3>
-        <hr>
-        <% if @has_review %>
-          <% @bookings.each do |booking| %>
-            <% if !booking.review.nil? %>
-              <ul class="list-group list-unstyled">
-                <li>
-                  <span class="fa-stack-1x" >
-                    <%= icon('fa-solid', 'star' ) * booking.review&.rating + icon('fa-regular', 'star') * (5-booking.review&.rating) %>
-                  </span>
-                </li>
-                <li>
-                  <p><strong><%= current_user.first_name+" "+current_user.last_name %></strong></p>
-                </li>
-                <li>
-                  <p><%= booking.review&.content %></p>
-                </li>
-                <hr>
-              </ul>
-            <% end %>
-          <% end %>
-        <% else %>
-          <p>This property does not have any reviews yet.</p>
-        <% end %>
-        <h3>Location</h3>
-        <% if @flat.geocoded? %>
-          <div data-controller="map" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>" data-map-markers-value="<%= @markers.to_json %>" data-map-zoom-value=15 id='show-map'></div>
-        <% end %>
       </div>
     </div>
   </div>

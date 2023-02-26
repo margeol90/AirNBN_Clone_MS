@@ -1,15 +1,20 @@
-<div class="text-xl-center">
-  <h1>My flats</h1>
-</div>
 <div class="container">
-  <% @flats.each do |flat| %>
-    <div class="card-product my-3">
-      <% if flat.photo.attached? %>
-        <%= cl_image_tag flat.photo.key %>
-      <% else %>
-        <img src="https://liftlearning.com/wp-content/uploads/2020/09/default-image.png" />
-      <% end %>
-      <div class="card-product-infos">
+  <h1 class="text-center">My Flats</h1>
+  <div class="row">
+    <div class="col-md-2">
+      <%= cl_image_tag current_user.avatar.key, width: 150, height: 150, crop: :thumb, class: "rounded-circle" %>
+      <h3><%= current_user.first_name %></h3>
+      <p>Last login: <%= current_user.last_sign_in_at  %></p>
+    </div>
+    <div class="col-sm-6 col-md-10">
+      <% @flats.each do |flat| %>
+        <div class="card-product my-3">
+          <% if flat.photo.attached? %>
+            <%= cl_image_tag flat.photo.key %>
+          <% else %>
+            <img src="https://liftlearning.com/wp-content/uploads/2020/09/default-image.png" />
+          <% end %>
+        <div class="card-product-infos">
         <h2 class="my-2"><%= flat.name %></h2>
         <p><%= flat.description.truncate(20, separator: ' ')%></p>
         <div class="card-flat-attr">
@@ -18,13 +23,15 @@
           <i class="fa-solid fa-euro-sign"></i>
           <span><%= flat.price %></span>
         </div>
-        <% if policy(flat).edit? %>
-          <%= link_to "Edit", edit_flat_path(flat), class: "btn btn-warning" %>
-        <% end %>
-        <% if policy(flat).destroy? %>
-          <%= link_to "Delete your flat", flat_path(flat), class: "btn btn-danger my-2", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-        <% end %>
-      </div>
+        <div class="my-4">
+          <% if policy(flat).edit? %>
+            <%= link_to "Edit", edit_flat_path(flat), class: "pink-btn" %>
+          <% end %>
+          <% if policy(flat).destroy? %>
+            <%= link_to "Delete your flat", flat_path(flat), class: "blue-btn", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+  </div>
 </div>
