@@ -58,7 +58,7 @@
         </div>
         <div class="col-4">
           <% unless @flat.user == current_user %>
-            <div class="card border-secondary mb-3 booking-form" style="width: 18rem;">
+            <div class="card border-secondary mb-3" id="booking-form" style="width: 18rem;">
               <div class="bg-white rounded p-3">
                 <h5 class="card-title text-center"><strong>Book this property</strong></h5>
                 <h6 class="card-subtitle text-center"><%= @flat.price %>€ per night</h6>
