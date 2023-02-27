@@ -16,12 +16,13 @@
           <% end %>
           <div class="card-product-infos">
             <h2><%= booking.flat.name %></h2>
-            <p><strong>Check in:</strong> <%= booking.start_date %></p>
-            <p><strong>Check out:</strong> <%= booking.end_date %></p>
+            <p><strong>Check in: </strong><%= booking.start_date %> &nbsp; <strong>Check out: </strong> <%= booking.end_date %></p>
+
             <%  no_of_nights = booking.end_date - booking.start_date %>
-            <p><strong>Number of nights:</strong> <%= no_of_nights.to_i %></p>
             <% cost = booking.flat.price * no_of_nights %>
-            <p><strong>Estimated cost:</strong> <%= cost %></p>
+            <p><strong>Number of nights: </strong> <%= no_of_nights.to_i %> &nbsp; <strong>Estimated cost: </strong> <%= "€#{cost}" %></p>
+
+
             <div class="my-2">
               <%= link_to "Cancel Reservation", booking_path(booking), class: "blue-btn", data: { turbo_method: :delete, turbo_confirm: "You are cancelling your booking reservation at #{booking.flat.name}" }  %>
               <%= link_to "Write a review", new_booking_review_path(booking), class:"light-blue-btn" %>
