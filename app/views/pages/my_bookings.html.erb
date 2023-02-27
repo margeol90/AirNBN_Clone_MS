@@ -2,7 +2,7 @@
   <h1 class="text-center">My Bookings</h1>
   <div class="row">
     <div class="col-md-2">
-      <%= cl_image_tag current_user.avatar.key, width: 150, height: 150, crop: :thumb, class: "rounded-circle" %>
+      <%= cl_image_tag current_user.avatar.key, width: 150, height: 150, crop: :thumb, class: "rounded-circle" if current_user.avatar.attached? %>
       <h3><%= current_user.first_name %></h3>
       <p>Last login: <%= current_user.last_sign_in_at  %></p>
     </div>
