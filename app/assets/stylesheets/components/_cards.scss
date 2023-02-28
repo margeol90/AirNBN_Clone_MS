@@ -4,7 +4,7 @@
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  width: 100%;
+  width: 250px;
   height: 300px;
 
   .img {
@@ -31,7 +31,6 @@
     flex-wrap: wrap;
     flex-direction: column;
     align-content: space-between;;
-    gap: 10px;
     color: black;
   }
 
