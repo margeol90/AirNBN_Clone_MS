@@ -4,13 +4,13 @@
 <div class="container-fluid d-flex">
   <div class="row">
     <% @flats.each do |flat| %>
-      <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 mb-3">
+      <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 mb-2">
         <div class="card">
           <%= link_to flat_path(flat), :class => "text-decoration-none" do %>
             <%= cl_image_tag flat.photo.key, :class => "card-img-top", crop: :fill if flat.photo.attached? %>
             <div class="card-body text-black">
               <h5 class="card-title"><%= flat.name %></h5>
-              <p class="card-text">
+              <p class="card-text-right">
                 <i class="fa-solid fa-bed"></i>
                 <span><%= flat.rooms %></span>
                 <i class="fa-solid fa-euro-sign"></i>
