@@ -53,7 +53,7 @@ flat5 = Flat.create(name: "Cycladic home with awesome views",
 puts "Attaching flat images"
 flat1.photo.attach(io: File.open(Rails.root.join("app/assets/images/flat1.jpg")), filename: "flat1")
 flat2.photo.attach(io: File.open(Rails.root.join("app/assets/images/flat2.jpg")), filename: "flat2")
-flat3.photo.attach(io: File.open(Rails.root.join("app/assets/images/flat3.jpg")), filename: "flat3")
+flat3.photo.attach(io: File.open(Rails.root.join("app/assets/images/flat3.jfif")), filename: "flat3")
 flat4.photo.attach(io: File.open(Rails.root.join("app/assets/images/flat4.jfif")), filename: "flat4")
 flat5.photo.attach(io: File.open(Rails.root.join("app/assets/images/flat5.jfif")), filename: "flat5")
 
